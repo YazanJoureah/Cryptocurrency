@@ -1,12 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const cryptoNewsHeaaders = {
-  "X-RapidAPI-Key": "6481d95127mshe4bdf208af975b4p1a333ejsn10c14fc0e1a4",
-  "X-RapidAPI-Host": "google-web-search1.p.rapidapi.com",
+  "X-Api-Key": "c92e25773fb640afad160a243d71bbe2",
 };
-
-const baseUrl = "https://google-web-search1.p.rapidapi.com/";
-
+const baseUrl = "https://newsapi.org/v2/";
 const createRequest = (url) => ({ url, headers: cryptoNewsHeaaders });
 
 export const cryptoNewsApi = createApi({
@@ -16,10 +13,18 @@ export const cryptoNewsApi = createApi({
     getCryptoNews: builder.query({
       query: ({ newsCategory, count }) =>
         createRequest(
-          `?query=${newsCategory}&limit=${count}&related_keywords= true`
+          `/everything?q=${newsCategory}&pageSize=${count}&sortBy= publishedAt`
+        ),
+    }),
+
+    getCryptoHeadlines: builder.query({
+      query: ({ newsCategory, count }) =>
+        createRequest(
+          `/top-headlines?q=crypto&$category=${newsCategory}&pageSize=${count}`
         ),
     }),
   }),
 });
 
-export const { useGetCryptoNewsQuery } = cryptoNewsApi;
+export const { useGetCryptoNewsQuery, useGetCryptoHeadlinesQuery } =
+  cryptoNewsApi;

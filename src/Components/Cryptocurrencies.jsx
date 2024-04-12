@@ -7,7 +7,7 @@ import Loader from "./Loader";
 import {
   Card,
   CardBody,
-  CardImg,
+  CardHeader,
   CardImgOverlay,
   CardText,
   CardTitle,
@@ -42,24 +42,26 @@ export default function Cryptocurrencies({ simplified }) {
         </div>
       )}
 
-      <Row xs={1} md={2} className="crypto-card-container g-4">
+      <Row xs={1} md={2} className="crypto-card-container g-4 ">
         {cryptos?.map((currency) => (
           <Col className="crypto-card" key={currency.id}>
             <Link to={`/crypto/${currency.id}`}>
               <Card className="crypto-card">
+                <CardHeader as="h3">{`${currency.rank}.${currency.name}`}</CardHeader>
                 <Image
                   className="cardImg"
                   roundedCircle
                   src={currency.iconUrl}
                 ></Image>
                 <CardImgOverlay>
-                  <CardTitle>{`${currency.rank}.${currency.name}`}</CardTitle>
-                  <CardBody>
-                    <CardText>Price: {millify(currency.price)}</CardText>
-                    <CardText>
+                  <CardBody className="m-5 ms-1">
+                    <CardText as="h4">
+                      Price: {millify(currency.price)}
+                    </CardText>
+                    <CardText as="h4">
                       Market Cap: {millify(currency.marketCap)}
                     </CardText>
-                    <CardText>
+                    <CardText as="h4">
                       Daily Change: {millify(currency.change)}%
                     </CardText>
                   </CardBody>

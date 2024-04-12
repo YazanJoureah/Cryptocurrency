@@ -10,9 +10,16 @@ import {
   Cryptocurrencies,
 } from "./Components";
 import "./App.css";
-import { Layout, Space, Typography } from "antd";
+import { Layout } from "antd";
 import { useContext } from "react";
 import TopBar from "./Components/Topbar";
+import {
+  FacebookFilled,
+  FacebookOutlined,
+  InstagramFilled,
+  LinkedinFilled,
+  TwitterSquareFilled,
+} from "@ant-design/icons";
 
 function App() {
   const menu = useContext(Menu);
@@ -60,21 +67,73 @@ function App() {
           </div>
         </Layout>
 
-        <div className="footer">
-          <Typography.Title
-            level={5}
-            style={{ color: "white", textAlign: "center" }}
-          >
-            Cryptoverse
-            <br />
-            All rights reserved
-          </Typography.Title>
-          <Space>
-            <Link to="/">Home</Link>
-            <Link to="/exchanges">Exchanges</Link>
-            <Link to="/news">News</Link>
-          </Space>
-        </div>
+        <footer className="footer">
+          <div className="footer-container">
+            <div className="footer-row">
+              <div className="footer-col">
+                <h4>Cryprcurrency</h4>
+                <ul>
+                  <li>
+                    <Link to="/">Home</Link>
+                  </li>
+                  <li>
+                    <Link to="/news">News</Link>
+                  </li>
+                  <li>
+                    <Link to="/exchanges">Exchanges</Link>
+                  </li>
+                </ul>
+              </div>
+              <div className="footer-col">
+                <h4>company</h4>
+                <ul>
+                  <li>
+                    <a href="#">about us</a>
+                  </li>
+                  <li>
+                    <a href="#">our services</a>
+                  </li>
+                  <li>
+                    <a href="#">privacy policy</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="footer-col">
+                <h4>get help</h4>
+                <ul>
+                  <li>
+                    <a href="#">FAQ</a>
+                  </li>
+                </ul>
+              </div>
+              <div className="footer-col">
+                <h4>follow us</h4>
+                <div className="social-links">
+                  <a href="#">
+                    <i className="fab ">
+                      <FacebookFilled />
+                    </i>
+                  </a>
+                  <a href="#">
+                    <i className="fab fa-twitter">
+                      <TwitterSquareFilled />
+                    </i>
+                  </a>
+                  <a href="#">
+                    <i className="fab fa-instagram">
+                      <InstagramFilled />
+                    </i>
+                  </a>
+                  <a href="#">
+                    <i className="fab fa-linkedin-in">
+                      <LinkedinFilled />
+                    </i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
