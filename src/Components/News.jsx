@@ -5,6 +5,8 @@ import { useState } from "react";
 import { Button, Card, Col, Row, Stack } from "react-bootstrap";
 import Loader from "./Loader";
 
+import { MDBContainer, MDBNavbar, MDBNavbarBrand } from "mdb-react-ui-kit";
+
 const { Option } = Select;
 
 export default function News({ simplified }) {
@@ -18,26 +20,36 @@ export default function News({ simplified }) {
   if (isFetching) return <Loader />; //we can use isFetching as well
   return (
     <Stack>
-      <Row>
+      <Row className="m-4">
         {!simplified && (
           <Col>
-            <Select
-              showSearch
-              className="select-news"
-              placeholder="Select a Crypto"
-              optionFilterProp="children"
-              onChange={(value) => setNewsCategory(value)}
-              filterOption={(input, option) =>
-                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-              }
-            >
-              <Option value="Cryptocurrency">Cryptocurrency</Option>
-              {data?.data?.coins.map((coin, i) => (
-                <Option key={i} value={coin.name}>
-                  {coin.name}
-                </Option>
-              ))}
-            </Select>
+            <MDBNavbar expand="lg" light>
+              <MDBContainer fluid>
+                <MDBNavbarBrand className="m-4">
+                  <h1 className="home-title">Search Crypto News</h1>
+                </MDBNavbarBrand>
+
+                <Select
+                  showSearch
+                  className="Search-bar m-4"
+                  placeholder={newsCategory}
+                  optionFilterProp="children"
+                  onChange={(value) => setNewsCategory(value)}
+                  filterOption={(input, option) =>
+                    option.children
+                      .toLowerCase()
+                      .indexOf(input.toLowerCase()) >= 0
+                  }
+                >
+                  <Option value="Cryptocurrency">Cryptocurrency</Option>
+                  {data?.data?.coins.map((coin, i) => (
+                    <Option key={i} value={coin.name}>
+                      {coin.name}
+                    </Option>
+                  ))}
+                </Select>
+              </MDBContainer>
+            </MDBNavbar>
           </Col>
         )}
       </Row>
