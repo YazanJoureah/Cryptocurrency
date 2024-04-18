@@ -1,5 +1,4 @@
 import millify from "millify";
-import { Input } from "antd";
 import { Link } from "react-router-dom";
 import { useGetCryptosQuery } from "../Services/cryptoApi";
 import { useEffect, useState } from "react";
@@ -12,9 +11,13 @@ import {
   CardText,
   CardTitle,
   Col,
+  Form,
   Image,
+  InputGroup,
   Row,
+  Stack,
 } from "react-bootstrap";
+import { MDBContainer, MDBNavbar, MDBNavbarBrand } from "mdb-react-ui-kit";
 
 export default function Cryptocurrencies({ simplified }) {
   const count = simplified ? 10 : 100;
@@ -30,38 +33,57 @@ export default function Cryptocurrencies({ simplified }) {
     setCryptos(fillteredData);
   }, [cryptoList, searchTerm]);
   if (isFetching) return <Loader />;
+  console.log(cryptoList);
 
   return (
-    <>
+    <Stack className="m-4">
       {!simplified && (
-        <div className="search-crypto">
-          <Input
-            placeholder="Search cryptos"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
+        <Row className="m-4">
+          {!simplified && (
+            <Col>
+              <MDBNavbar expand="lg" light>
+                <MDBContainer fluid>
+                  <MDBNavbarBrand>
+                    <h1 className="home-title">Search Cryptos</h1>
+                  </MDBNavbarBrand>
+
+                  <InputGroup>
+                    <Form.Control
+                      placeholder="Search Crypto"
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                  </InputGroup>
+                </MDBContainer>
+              </MDBNavbar>
+            </Col>
+          )}
+        </Row>
       )}
 
       <Row xs={1} md={2} className="crypto-card-container g-4 ">
         {cryptos?.map((currency) => (
-          <Col className="crypto-card" key={currency.id}>
-            <Link to={`/crypto/${currency.id}`}>
-              <Card className="crypto-card">
-                <CardHeader as="h3">{`${currency.rank}.${currency.name}`}</CardHeader>
+          <Col key={currency.id}>
+            <Link to={`/crypto/${currency.uuid}`}>
+              <Card style={{ border: `4px solid ${currency.color}` }}>
+                <CardHeader
+                  style={{ color: currency.color }}
+                  as="h3"
+                >{`${currency.rank}.${currency.symbol}`}</CardHeader>
                 <Image
                   className="cardImg"
                   roundedCircle
                   src={currency.iconUrl}
                 ></Image>
                 <CardImgOverlay>
-                  <CardBody className="m-5 ms-1">
-                    <CardText as="h4">
+                  <CardTitle className="mt-5">{currency.name}</CardTitle>
+                  <CardBody>
+                    <CardText className=" mt-0 mb-3" as="h4">
                       Price: {millify(currency.price)}
                     </CardText>
-                    <CardText as="h4">
+                    <CardText className=" mb-3" as="h4">
                       Market Cap: {millify(currency.marketCap)}
                     </CardText>
-                    <CardText as="h4">
+                    <CardText className=" mb-3" as="h4">
                       Daily Change: {millify(currency.change)}%
                     </CardText>
                   </CardBody>
@@ -71,6 +93,6 @@ export default function Cryptocurrencies({ simplified }) {
           </Col>
         ))}
       </Row>
-    </>
+    </Stack>
   );
 }

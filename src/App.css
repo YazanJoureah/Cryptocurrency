@@ -92,9 +92,7 @@ body {
   justify-content: center;
   align-items: center;
 }
-.crypto-card {
-  max-width: 30rem;
-}
+
 .news-card {
   overflow: hidden;
   height: fit-content;
