@@ -1,7 +1,7 @@
 :root {
-  --text-primary: #000;
-  --bgPrimary: #fff;
-  --bgSecondary: #f9f9f9;
+  --text-primary: #fff;
+  --bgPrimary: rgb(29, 27, 27);
+  --bgSecondary: #24262b;
   --pink: #0071bd;
   --light-blue: #e6f7ff;
   --border: #d9d9d9;
@@ -9,7 +9,7 @@
 
 .coin-detail-container {
   margin: 30px;
-  background-color: #d9d9d9;
+  background-color: var(--bgPrimary);
 }
 
 .coin-heading-container {
@@ -25,7 +25,7 @@
 
 .coin-heading-container .coin-name {
   font-weight: 900;
-  color: var(--pink);
+  color: var(--light-blue);
 }
 
 .coin-heading-container p {
@@ -45,15 +45,20 @@
   font-weight: 700;
   font-size: 1.4rem;
   margin-top: 20px;
-  color: var(--pink);
+  color: var(--light-blue);
 }
 
 .coin-details-heading {
   font-weight: 700 !important;
   margin-top: 20px !important;
-  color: var(--pink) !important;
+  color: var(--light-blue) !important;
 }
-
+.pargraph {
+  color: var(--text-primary);
+}
+.text {
+  color: var(--text-primary);
+}
 .coin-stats {
   display: flex;
   justify-content: space-between;
@@ -71,6 +76,7 @@
 
 .stats {
   font-weight: 800;
+  color: var(--light-blue);
 }
 
 .coin-value-statistics-heading p {
@@ -82,12 +88,11 @@
   display: flex;
   gap: 40px;
   margin-top: 40px;
-  padding-top: 20px;
 }
 
 .coin-desc-link h2 {
   font-weight: 700;
-  color: var(--pink);
+  color: var(--light-blue);
 }
 
 .coin-desc-link p {
@@ -104,18 +109,19 @@
 }
 
 .coin-desc {
+  color: var(--text-primary) !important;
+
   flex: 0.5;
 }
 
 .coin-links {
   padding: 0px 20px;
-  flex: 0.5;
+  flex: 1;
 }
 
 .coin-link {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   border-bottom: 1px solid var(--border);
   padding: 20px;
 }
@@ -123,6 +129,7 @@
 .link-name {
   text-transform: capitalize;
   font-size: 1rem;
+  color: var(--text-primary) !important;
 }
 
 .coin-link a {

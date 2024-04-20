@@ -1,0 +1,39 @@
+.logo-container {
+  width: 100%;
+  justify-content: space-between;
+}
+.Bars {
+  font-size: 32px;
+  color: white;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+.Bars:hover {
+  color: #038edc;
+}
+.mainTitle {
+  font-weight: 500;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.side-bar-link {
+  display: flex;
+  gap: 6%;
+  text-decoration: none;
+  color: rgb(189, 184, 184);
+  font-size: 1.2em;
+  transition: 0.3s;
+  margin: 0.5em;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.side-bar-link:hover {
+  color: #038edc;
+}
+
+.Bar .active {
+  color: #179ce9;
+  background-color: white;
+}

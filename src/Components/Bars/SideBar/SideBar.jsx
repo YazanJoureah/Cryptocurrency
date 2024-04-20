@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { Menu } from "../Context/MenueContext";
+import { Menu } from "../../../Context/MenueContext";
 import { Stack } from "react-bootstrap";
 import {
   BarsOutlined,
@@ -9,6 +9,7 @@ import {
   MoneyCollectOutlined,
 } from "@ant-design/icons";
 import { useContext } from "react";
+import "../Bars.css";
 
 function SideBar() {
   const menu = useContext(Menu);
@@ -45,10 +46,7 @@ function SideBar() {
             Cryptocurrencies
           </span>
         </NavLink>
-        <NavLink to={"/exchanges"} className="side-bar-link align-items-center">
-          <MoneyCollectOutlined />
-          <span style={{ display: isOpen ? "block" : "none" }}>Exchanges</span>
-        </NavLink>
+
         <NavLink to={"/news"} className="side-bar-link align-items-center">
           <BulbOutlined />
           <span style={{ display: isOpen ? "block" : "none" }}>News</span>
