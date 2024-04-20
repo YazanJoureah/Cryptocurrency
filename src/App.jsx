@@ -2,20 +2,20 @@ import { Routes, Route, Link } from "react-router-dom";
 import { Menu } from "./Context/MenueContext";
 import { Window } from "./Context/WindowContext";
 import {
-  SideBar,
   News,
   Homepage,
   CryptoDetails,
   Exchanges,
   Cryptocurrencies,
-} from "./Components";
+} from "./pages";
 import "./App.css";
 import { Layout } from "antd";
 import { useContext } from "react";
-import TopBar from "./Components/Topbar";
+import TopBar from "./Components/Bars/TopBar/Topbar";
+import SideBar from "./Components/Bars/SideBar/SideBar";
+
 import {
   FacebookFilled,
-  FacebookOutlined,
   InstagramFilled,
   LinkedinFilled,
   TwitterSquareFilled,

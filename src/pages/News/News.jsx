@@ -1,10 +1,10 @@
 import { Select } from "antd";
-import { useGetCryptosQuery } from "../Services/cryptoApi";
-import { useGetCryptoNewsQuery } from "../Services/cryptoNewsApi";
+import { useGetCryptosQuery } from "../../Services/cryptoApi";
+import { useGetCryptoNewsQuery } from "../../Services/cryptoNewsApi";
 import { useState } from "react";
-import { Button, Card, Col, Row, Stack } from "react-bootstrap";
-import Loader from "./Loader";
-
+import { Col, Row, Stack } from "react-bootstrap";
+import Loader from "../../Components/Loader/Loader";
+import Cards from "../../Components/Card/Card";
 import { MDBContainer, MDBNavbar, MDBNavbarBrand } from "mdb-react-ui-kit";
 
 const { Option } = Select;
@@ -20,12 +20,12 @@ export default function News({ simplified }) {
   if (isFetching) return <Loader />; //we can use isFetching as well
   return (
     <Stack>
-      <Row className="m-4">
+      <Row className="m-3">
         {!simplified && (
           <Col>
             <MDBNavbar expand="lg" light>
               <MDBContainer fluid>
-                <MDBNavbarBrand className="m-4">
+                <MDBNavbarBrand>
                   <h1 className="home-title">Search Crypto News</h1>
                 </MDBNavbarBrand>
 
@@ -57,32 +57,7 @@ export default function News({ simplified }) {
       <Row xs={1} md={1}>
         {cryptoNews?.articles.map((news, i) => (
           <Col key={i}>
-            <Card
-              className="m-4 news-card"
-              bg="dark"
-              text="light"
-              border="primary"
-            >
-              <Card.Header as="h3">{news.source.name}</Card.Header>
-              <Card.Img
-                className="news-card-image"
-                src={news.urlToImage}
-                alt="Card image"
-              />
-              <Card.Body>
-                <Card.Title as="h1">{news.title}</Card.Title>
-                <Card.Text as="h5">
-                  {news.description > 100
-                    ? `${news.description.substring(0, 100)}......`
-                    : news.description}
-                </Card.Text>
-                <Button variant="light">
-                  <a className="news-card-link" href={news.url} target="_blank">
-                    View Source
-                  </a>
-                </Button>
-              </Card.Body>
-            </Card>
+            <Cards payload={news} News />
           </Col>
         ))}
       </Row>

@@ -1,4 +1,3 @@
-import HTMLReactParser from "html-react-parser";
 import { useParams } from "react-router-dom";
 import millify from "millify";
 import { Col, Row, Typography, Select } from "antd";
@@ -17,10 +16,11 @@ import {
 import {
   useGetCryptosDetailsQuery,
   useGetCryptosHistoryQuery,
-} from "../Services/cryptoApi";
-import Loader from "./Loader";
+} from "../../Services/cryptoApi";
+import Loader from "../../Components/Loader/Loader";
 import { useState } from "react";
 import "./CryptoDetails.css";
+import { MDBContainer, MDBNavbar } from "mdb-react-ui-kit";
 const { Title, Text } = Typography;
 const { Option } = Select;
 
@@ -29,6 +29,7 @@ const CryptoDetails = () => {
   const [timePeriod, setTimePeriod] = useState("7d");
   const { data, isFetching } = useGetCryptosDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptosHistoryQuery(coinId, timePeriod);
+  console.log(data);
   console.log(coinHistory);
   const cryptoDetails = data?.data?.coin;
   if (isFetching) return <Loader />;
@@ -95,23 +96,30 @@ const CryptoDetails = () => {
     <Col className="coin-detail-container">
       <Col className="coin-heading-container">
         <Title level={2} className="coin-name">
-          {data?.data?.coin.name} ({data?.data?.coin.slug}) Price
+          {data?.data?.coin.name} ({data?.data?.coin.symbol}) Price
         </Title>
-        <p>
+        <p className="pargraph">
           {cryptoDetails.name} live price in US Dollar (USD). View value
           statistics, market cap and supply.
         </p>
       </Col>
-      <Select
-        defaultValue="7d"
-        className="select-timeperiod"
-        placeholder="Select Timeperiod"
-        onChange={(value) => setTimePeriod(value)}
-      >
-        {time.map((date) => (
-          <Option key={date}>{date}</Option>
-        ))}
-      </Select>
+
+      <MDBNavbar expand="lg" light>
+        <MDBContainer fluid>
+          <Select
+            defaultValue="7d"
+            placeholder="Select Timeperiod"
+            className="Search-bar m-4"
+            onChange={(value) => setTimePeriod(value)}
+          >
+            {time.map((date) => (
+              <Option key={date} value={date}>
+                {date}
+              </Option>
+            ))}
+          </Select>
+        </MDBContainer>
+      </MDBNavbar>
 
       <Col className="stats-container">
         <Col className="coin-value-statistics">
@@ -119,7 +127,7 @@ const CryptoDetails = () => {
             <Title level={3} className="coin-details-heading">
               {cryptoDetails.name} Value Statistics
             </Title>
-            <p>
+            <p className="pargraph">
               An overview showing the statistics of {cryptoDetails.name}, such
               as the base and quote currency, the rank, and trading volume.
             </p>
@@ -127,8 +135,8 @@ const CryptoDetails = () => {
           {stats.map(({ icon, title, value, i }) => (
             <Col className="coin-stats" key={i}>
               <Col className="coin-stats-name">
-                <Text>{icon}</Text>
-                <Text>{title}</Text>
+                <Text className="text">{icon}</Text>
+                <Text className="text">{title}</Text>
               </Col>
               <Text className="stats">{value}</Text>
             </Col>
@@ -139,7 +147,7 @@ const CryptoDetails = () => {
             <Title level={3} className="coin-details-heading">
               Other Stats Info
             </Title>
-            <p>
+            <p className="pargraph">
               An overview showing the statistics of {cryptoDetails.name}, such
               as the base and quote currency, the rank, and trading volume.
             </p>
@@ -147,8 +155,8 @@ const CryptoDetails = () => {
           {genericStats.map(({ icon, title, value, i }) => (
             <Col className="coin-stats" key={i}>
               <Col className="coin-stats-name">
-                <Text>{icon}</Text>
-                <Text>{title}</Text>
+                <Text className="text">{icon}</Text>
+                <Text className="text">{title}</Text>
               </Col>
               <Text className="stats">{value}</Text>
             </Col>
@@ -156,12 +164,6 @@ const CryptoDetails = () => {
         </Col>
       </Col>
       <Col className="coin-desc-link">
-        <Row className="coin-desc">
-          <Title level={3} className="coin-details-heading">
-            What is {cryptoDetails.name}?
-          </Title>
-          {HTMLReactParser(cryptoDetails.description)}
-        </Row>
         <Col className="coin-links">
           <Title level={3} className="coin-details-heading">
             {cryptoDetails.name} Links

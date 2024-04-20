@@ -1,22 +1,9 @@
-import millify from "millify";
 import { Link } from "react-router-dom";
-import { useGetCryptosQuery } from "../Services/cryptoApi";
+import { useGetCryptosQuery } from "../../Services/cryptoApi";
 import { useEffect, useState } from "react";
-import Loader from "./Loader";
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  CardImgOverlay,
-  CardText,
-  CardTitle,
-  Col,
-  Form,
-  Image,
-  InputGroup,
-  Row,
-  Stack,
-} from "react-bootstrap";
+import Loader from "../../Components/Loader/Loader";
+import { Col, Form, InputGroup, Row, Stack } from "react-bootstrap";
+import Cards from "../../Components/Card/Card";
 import { MDBContainer, MDBNavbar, MDBNavbarBrand } from "mdb-react-ui-kit";
 
 export default function Cryptocurrencies({ simplified }) {
@@ -38,7 +25,7 @@ export default function Cryptocurrencies({ simplified }) {
   return (
     <Stack className="m-4">
       {!simplified && (
-        <Row className="m-4">
+        <Row className="m-3">
           {!simplified && (
             <Col>
               <MDBNavbar expand="lg" light>
@@ -64,31 +51,7 @@ export default function Cryptocurrencies({ simplified }) {
         {cryptos?.map((currency) => (
           <Col key={currency.id}>
             <Link to={`/crypto/${currency.uuid}`}>
-              <Card style={{ border: `4px solid ${currency.color}` }}>
-                <CardHeader
-                  style={{ color: currency.color }}
-                  as="h3"
-                >{`${currency.rank}.${currency.symbol}`}</CardHeader>
-                <Image
-                  className="cardImg"
-                  roundedCircle
-                  src={currency.iconUrl}
-                ></Image>
-                <CardImgOverlay>
-                  <CardTitle className="mt-5">{currency.name}</CardTitle>
-                  <CardBody>
-                    <CardText className=" mt-0 mb-3" as="h4">
-                      Price: {millify(currency.price)}
-                    </CardText>
-                    <CardText className=" mb-3" as="h4">
-                      Market Cap: {millify(currency.marketCap)}
-                    </CardText>
-                    <CardText className=" mb-3" as="h4">
-                      Daily Change: {millify(currency.change)}%
-                    </CardText>
-                  </CardBody>
-                </CardImgOverlay>
-              </Card>
+              <Cards payload={currency} />
             </Link>
           </Col>
         ))}

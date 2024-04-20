@@ -8,6 +8,8 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
+import "../Bars.css";
+
 function TopBar() {
   return (
     <>
@@ -20,7 +22,7 @@ function TopBar() {
         data-bs-theme="dark"
       >
         <Container>
-          <Navbar.Brand className="mainTitle  fs-3">Cryptoverce</Navbar.Brand>
+          <Navbar.Brand className="mainTitle  fs-3">Cryptoverse</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
@@ -35,13 +37,7 @@ function TopBar() {
                 <FundOutlined />
                 <span>Cryptocurrencies</span>
               </NavLink>
-              <NavLink
-                to={"/exchanges"}
-                className="side-bar-link align-items-center"
-              >
-                <MoneyCollectOutlined />
-                <span>Exchanges</span>
-              </NavLink>
+
               <NavLink
                 to={"/news"}
                 className="side-bar-link align-items-center"

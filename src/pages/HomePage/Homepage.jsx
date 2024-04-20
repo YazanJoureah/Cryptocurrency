@@ -2,9 +2,9 @@ import millify from "millify";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
-import { useGetCryptosQuery } from "../Services/cryptoApi";
-import { Cryptocurrencies, News } from "./index";
-import Loader from "./Loader";
+import { useGetCryptosQuery } from "../../Services/cryptoApi";
+import { Cryptocurrencies, News } from "../index";
+import Loader from "../../Components/Loader/Loader";
 import {
   Card,
   CardBody,
@@ -14,7 +14,7 @@ import {
   Container,
   Image,
 } from "react-bootstrap";
-import { useGetCryptoHeadlinesQuery } from "../Services/cryptoNewsApi";
+import { useGetCryptoHeadlinesQuery } from "../../Services/cryptoNewsApi";
 
 export default function Homepage() {
   const demoImg =
@@ -25,15 +25,8 @@ export default function Homepage() {
     count: 10,
   });
   const { data, isFetching } = useGetCryptosQuery(10);
-  const globalStats = data?.data?.stats || {
-    total: 0,
-    totalExchanges: 0,
-    total24hVolume: 0,
-    totalMarketCap: 0,
-    totalMarkets: 0,
-  };
-  console.log(data);
-  console.log(cryptoNews);
+  const globalStats = data?.data?.stats;
+
   if (isFetching) return <Loader />;
   return (
     <>
@@ -63,9 +56,9 @@ export default function Homepage() {
         ))}
       </Carousel>
 
-      <p className="home-title p-3 fs-2">Global Crypto Status</p>
+      <p className="home-title mt-5 ms-4 mb-4 fs-2">Global Crypto Status</p>
 
-      <Container className="p-4">
+      <Container>
         <Row xs={1} md={2} className="crypto-card-container g-4">
           <Col xs={6} md={6} lg={6}>
             <Card className="status-card p-3">
@@ -119,19 +112,19 @@ export default function Homepage() {
       </Container>
 
       <div className="home-heading-container">
-        <p className=" home-title fs-2">Top 10 Cryptocurrencies in the world</p>
+        <p className="home-title mt-5 ms-4 mb-4 fs-2">
+          Top 10 Cryptocurrencies in the world
+        </p>
         <span className="fs-5">
           <Link className="showmore" to="/cryptocurrencies">
             Show more
           </Link>
         </span>
       </div>
-      <Container className="p-4">
-        <Cryptocurrencies simplified={true} />
-      </Container>
+      <Cryptocurrencies simplified={true} />
 
       <div className="home-heading-container">
-        <p className="home-title fs-2">Latest crypto news</p>
+        <p className="home-title mt-5 ms-4 mb-4 fs-2">Latest crypto news</p>
         <span className="fs-5">
           <Link className="showmore" to="/news">
             Show more

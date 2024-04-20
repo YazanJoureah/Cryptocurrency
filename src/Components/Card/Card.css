@@ -1,0 +1,13 @@
+.cardImg {
+  align-self: center;
+  margin: 10px;
+  max-height: 400px;
+}
+
+.news-card-link {
+  text-align: center;
+  text-decoration: none;
+  color: #179ce9;
+  font-size: 20px;
+  font-weight: 500;
+}
