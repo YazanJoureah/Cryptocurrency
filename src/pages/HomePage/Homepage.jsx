@@ -15,6 +15,7 @@ import {
   Image,
 } from "react-bootstrap";
 import { useGetCryptoHeadlinesQuery } from "../../Services/cryptoNewsApi";
+import Helmets from "../../SEO/Helmet";
 
 export default function Homepage() {
   const demoImg =
@@ -30,6 +31,18 @@ export default function Homepage() {
   if (isFetching) return <Loader />;
   return (
     <>
+      <Helmets
+        title={"Cryptocurrency Market Overview: Prices,News & More"}
+        desc={`Total Cryptocurrenceis: ${
+          globalStats?.total
+        }, Total Exchanges: ${millify(
+          globalStats?.totalExchanges
+        )},Total Market Cap: ${millify(
+          globalStats?.totalMarketCap
+        )},Total 24h Volume:${millify(
+          globalStats?.total24hVolume
+        )},Total Markets:${millify(globalStats?.totalMarkets)}`}
+      />
       <Carousel fade>
         {cryptoNews?.articles.map((news, i) => (
           <Carousel.Item key={i}>
@@ -37,6 +50,7 @@ export default function Homepage() {
               <Image
                 style={{
                   width: "100%",
+                  height: "400px",
                   maxHeight: "400px",
                   opacity: "0.5",
                 }}
@@ -111,11 +125,11 @@ export default function Homepage() {
         </Row>
       </Container>
 
-      <div className="home-heading-container">
-        <p className="home-title mt-5 ms-4 mb-4 fs-2">
+      <div className="home-heading-container mt-5">
+        <p className="home-title ms-5 fs-2">
           Top 10 Cryptocurrencies in the world
         </p>
-        <span className="fs-5">
+        <span>
           <Link className="showmore" to="/cryptocurrencies">
             Show more
           </Link>
@@ -123,10 +137,10 @@ export default function Homepage() {
       </div>
       <Cryptocurrencies simplified={true} />
 
-      <div className="home-heading-container">
-        <p className="home-title mt-5 ms-4 mb-4 fs-2">Latest crypto news</p>
-        <span className="fs-5">
-          <Link className="showmore" to="/news">
+      <div className="home-heading-container mt-5">
+        <p className="home-title ms-5 fs-2">Latest crypto news</p>
+        <span>
+          <Link className="showmore " to="/news">
             Show more
           </Link>
         </span>

@@ -6,7 +6,6 @@ import {
   BulbOutlined,
   FundOutlined,
   HomeOutlined,
-  MoneyCollectOutlined,
 } from "@ant-design/icons";
 import { useContext } from "react";
 import "../Bars.css";

@@ -35,10 +35,7 @@ body {
   color: aliceblue;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
-.show-more {
-  color: #179ce9;
-  cursor: pointer;
-}
+
 .crypto-card-container {
   display: flex;
   justify-content: center;
@@ -51,6 +48,9 @@ body {
 .showmore {
   font-size: 18px;
   text-decoration: none;
+  color: #179ce9;
+  cursor: pointer;
+  margin-right: 3rem;
 }
 
 .footer-container {

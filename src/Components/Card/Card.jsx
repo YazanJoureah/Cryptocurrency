@@ -69,13 +69,13 @@ const Cards = ({ payload, News }) => {
       ) : (
         <CardImgOverlay>
           <CardBody>
-            <CardText className=" mt-0 mb-3" as="h4">
+            <CardText className=" mt-5 ms-3 mb-3" as="h4">
               Price: {millify(data.content.price)}
             </CardText>
-            <CardText className=" mb-3" as="h4">
+            <CardText className=" mb-3 ms-3" as="h4">
               Market Cap: {millify(data.content.marketCap)}
             </CardText>
-            <CardText className=" mb-3" as="h4">
+            <CardText className=" mb-3 ms-3" as="h4">
               Daily Change: {millify(data.content.change)}%
             </CardText>
           </CardBody>
