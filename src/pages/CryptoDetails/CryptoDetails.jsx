@@ -21,6 +21,8 @@ import Loader from "../../Components/Loader/Loader";
 import { useState } from "react";
 import "./CryptoDetails.css";
 import { MDBContainer, MDBNavbar } from "mdb-react-ui-kit";
+import Helmets from "../../SEO/Helmet";
+
 const { Title, Text } = Typography;
 const { Option } = Select;
 
@@ -94,6 +96,12 @@ const CryptoDetails = () => {
 
   return (
     <Col className="coin-detail-container">
+      <Helmets
+        title={`${data?.data?.coin.name} (${data?.data?.coin.symbol}`}
+        desc={` An overview showing the statistics of {cryptoDetails.name}, such
+              as the base and quote currency, the rank, and trading volume.`}
+      />
+
       <Col className="coin-heading-container">
         <Title level={2} className="coin-name">
           {data?.data?.coin.name} ({data?.data?.coin.symbol}) Price

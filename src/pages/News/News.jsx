@@ -6,6 +6,7 @@ import { Col, Row, Stack } from "react-bootstrap";
 import Loader from "../../Components/Loader/Loader";
 import Cards from "../../Components/Card/Card";
 import { MDBContainer, MDBNavbar, MDBNavbarBrand } from "mdb-react-ui-kit";
+import Helmets from "../../SEO/Helmet";
 
 const { Option } = Select;
 
@@ -23,6 +24,10 @@ export default function News({ simplified }) {
       <Row className="m-3">
         {!simplified && (
           <Col>
+            <Helmets
+              title="Latest Cryptocurrency News and Updates"
+              desc={` Explore and compare leading cryptocurrency exchanges worldwide.`}
+            />
             <MDBNavbar expand="lg" light>
               <MDBContainer fluid>
                 <MDBNavbarBrand>

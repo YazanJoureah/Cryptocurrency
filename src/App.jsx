@@ -1,13 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import { Menu } from "./Context/MenueContext";
 import { Window } from "./Context/WindowContext";
-import {
-  News,
-  Homepage,
-  CryptoDetails,
-  Exchanges,
-  Cryptocurrencies,
-} from "./pages";
+import { News, Homepage, CryptoDetails, Cryptocurrencies } from "./pages";
 import "./App.css";
 import { Layout } from "antd";
 import { useContext } from "react";
@@ -56,7 +50,6 @@ function App() {
           <div className="routs">
             <Routes>
               <Route element={<Homepage />} path="/"></Route>
-              <Route element={<Exchanges />} path="/exchanges"></Route>
               <Route
                 element={<Cryptocurrencies />}
                 path="/cryptocurrencies"

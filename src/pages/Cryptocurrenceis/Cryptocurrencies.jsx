@@ -5,7 +5,7 @@ import Loader from "../../Components/Loader/Loader";
 import { Col, Form, InputGroup, Row, Stack } from "react-bootstrap";
 import Cards from "../../Components/Card/Card";
 import { MDBContainer, MDBNavbar, MDBNavbarBrand } from "mdb-react-ui-kit";
-
+import Helmets from "../../SEO/Helmet";
 export default function Cryptocurrencies({ simplified }) {
   const count = simplified ? 10 : 100;
 
@@ -28,6 +28,11 @@ export default function Cryptocurrencies({ simplified }) {
         <Row className="m-3">
           {!simplified && (
             <Col>
+              <Helmets
+                title="cryptocurrencies"
+                desc="Search cryptocurrencies"
+              />
+
               <MDBNavbar expand="lg" light>
                 <MDBContainer fluid>
                   <MDBNavbarBrand>
