@@ -19,11 +19,11 @@ body {
 .main {
   width: 100%;
   height: 100svh;
-  margin: 10px;
 }
 
 .status-card {
-  max-width: 30rem;
+  width: 20rem;
+  max-width: 20rem;
 }
 .home-heading-container {
   display: flex;

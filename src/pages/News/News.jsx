@@ -7,18 +7,26 @@ import Loader from "../../Components/Loader/Loader";
 import Cards from "../../Components/Card/Card";
 import { MDBContainer, MDBNavbar, MDBNavbarBrand } from "mdb-react-ui-kit";
 import Helmets from "../../SEO/Helmet";
-
+import { articles as cryptoNews } from "./AllNews";
 const { Option } = Select;
 
 export default function News({ simplified }) {
   const [newsCategory, setNewsCategory] = useState("Crypto");
   const { data } = useGetCryptosQuery(100);
-  const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({
+  /*const { data: cryptoNews, isFetching } = useGetCryptoNewsQuery({
     newsCategory,
-    count: simplified ? 6 : 16,
-  });
-  console.log(cryptoNews);
-  if (isFetching) return <Loader />; //we can use isFetching as well
+    count: simplified ? 6 : 30,
+  });*/
+
+  let AllNews = cryptoNews;
+  if (simplified) {
+    AllNews = cryptoNews.filter((obj, index) => {
+      const arrayLength = cryptoNews.length;
+      const wantedItems = 10;
+      return arrayLength - index <= wantedItems;
+    });
+  }
+  /*if (isFetching) return <Loader />; //we can use isFetching as well*/
   return (
     <Stack>
       <Row className="m-3">
@@ -60,7 +68,7 @@ export default function News({ simplified }) {
       </Row>
 
       <Row xs={1} md={1}>
-        {cryptoNews?.articles.map((news, i) => (
+        {AllNews.map((news, i) => (
           <Col key={i}>
             <Cards payload={news} News />
           </Col>

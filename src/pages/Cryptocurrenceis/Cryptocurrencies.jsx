@@ -20,7 +20,6 @@ export default function Cryptocurrencies({ simplified }) {
     setCryptos(fillteredData);
   }, [cryptoList, searchTerm]);
   if (isFetching) return <Loader />;
-  console.log(cryptoList);
 
   return (
     <Stack className="m-4">

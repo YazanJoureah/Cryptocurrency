@@ -14,17 +14,18 @@ import {
   Container,
   Image,
 } from "react-bootstrap";
-import { useGetCryptoHeadlinesQuery } from "../../Services/cryptoNewsApi";
+//import { useGetCryptoHeadlinesQuery } from "../../Services/cryptoNewsApi";
+import { TopNews } from "../News/AllNews";
 import Helmets from "../../SEO/Helmet";
 
 export default function Homepage() {
   const demoImg =
     "http://coinrevolution.com/wp-content/uploads/2020/06/cryptonews.jpg";
 
-  const { data: cryptoNews } = useGetCryptoHeadlinesQuery({
+  /*  const { data: cryptoNews } = useGetCryptoHeadlinesQuery({
     newsCategory: "busisness",
     count: 10,
-  });
+  });*/
   const { data, isFetching } = useGetCryptosQuery(10);
   const globalStats = data?.data?.stats;
 
@@ -44,7 +45,7 @@ export default function Homepage() {
         )},Total Markets:${millify(globalStats?.totalMarkets)}`}
       />
       <Carousel fade>
-        {cryptoNews?.articles.map((news, i) => (
+        {TopNews.map((news, i) => (
           <Carousel.Item key={i}>
             <a href={news.url} target="_blank">
               <Image
@@ -74,7 +75,12 @@ export default function Homepage() {
 
       <Container>
         <Row xs={1} md={2} className="crypto-card-container g-4">
-          <Col xs={6} md={6} lg={6}>
+          <Col
+            className="d-flex justify-content-center p-0"
+            xs={12}
+            md={6}
+            lg={6}
+          >
             <Card className="status-card p-3">
               <CardTitle className="">Total Cryptocurrenceis</CardTitle>
               <CardBody>
@@ -82,7 +88,12 @@ export default function Homepage() {
               </CardBody>
             </Card>
           </Col>
-          <Col xs={6} md={6} lg={6}>
+          <Col
+            className="d-flex justify-content-center p-0"
+            xs={12}
+            md={6}
+            lg={6}
+          >
             <Card className="status-card p-3">
               <CardTitle className="">Total Exchanges</CardTitle>
               <CardBody>
@@ -92,7 +103,12 @@ export default function Homepage() {
               </CardBody>
             </Card>
           </Col>
-          <Col xs={6} md={6} lg={6}>
+          <Col
+            className="d-flex justify-content-center p-0"
+            xs={12}
+            md={6}
+            lg={6}
+          >
             <Card className="status-card p-3">
               <CardTitle className="">Total Market Cap</CardTitle>
               <CardBody>
@@ -102,7 +118,12 @@ export default function Homepage() {
               </CardBody>
             </Card>
           </Col>
-          <Col xs={6} md={6} lg={6}>
+          <Col
+            className="d-flex justify-content-center p-0"
+            xs={12}
+            md={6}
+            lg={6}
+          >
             <Card className="status-card p-3">
               <CardTitle className="">Total 24h Volume</CardTitle>
               <CardBody>
@@ -112,7 +133,12 @@ export default function Homepage() {
               </CardBody>
             </Card>
           </Col>
-          <Col xs={6} md={6} lg={6}>
+          <Col
+            className="d-flex justify-content-center p-0"
+            xs={12}
+            md={6}
+            lg={6}
+          >
             <Card className="status-card p-3">
               <CardTitle className="">Total Markets</CardTitle>
               <CardBody>
