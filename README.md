@@ -51,7 +51,7 @@ Once the development server is running, you can access the application in your w
 
 ## Contributing
 
-Contributions are welcome! Please feel free to open issues or submit pull requests.
+Contributions are welcome! Please feel free to open issues or push a branch.
 
 ## License
 
